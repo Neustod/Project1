@@ -36,11 +36,5 @@ namespace Project1
             foreach (int item in Index) { Console.Write($"{item} "); }
             Console.WriteLine();
         }
-        static public IntArray CreateRand(uint size, int minRand, int maxRand)
-        {
-            IntArray temp = IntArray.Create(size);
-            temp.FillRand(minRand, maxRand);
-            return temp;
-        }
     }
 }
