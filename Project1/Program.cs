@@ -7,7 +7,7 @@ namespace Project1
         static void Main() 
         {
             IntArray Arr = IntArray.Create(size: 10);
-            Arr.FillRand(-100, 100);
+            Arr.FillRand(-100, 100); 
 
             Arr.Print();
             Console.WriteLine($"Max value = {Arr.MaxValue()}\n" +

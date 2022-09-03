@@ -34,7 +34,7 @@ namespace Project1
         public void Print()
         {
             foreach (int item in Index) { Console.Write($"{item} "); }
-            Console.WriteLine();
+            Console.WriteLine(); 
         }
     }
 }
