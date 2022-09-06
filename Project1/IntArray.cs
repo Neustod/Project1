@@ -6,14 +6,14 @@ namespace Project1
 {
     class IntArray
     {
-        public IntArray(uint size) { Index = new int[size]; this.size = size; }
+        private int size;
 
-        private uint size;
+        public IntArray(int size) { Index = new int[size]; this.size = size; }              
 
         public int[] Index { get; set; }
-        public uint Size { get => size; }
+        public int Size { get => size; }
 
-        static public IntArray Create(uint size) => new IntArray(size);
+        static public IntArray Create(int size) => new IntArray(size);
         public void FillRand(int start, int end)
         {
             Random temp = new Random();
@@ -36,7 +36,7 @@ namespace Project1
             foreach (int item in Index) { Console.Write($"{item} "); }
             Console.WriteLine(); 
         }
-        public static IntArray CreateRand(uint size, int minRand, int maxRand)
+        public static IntArray CreateRand(int size, int minRand, int maxRand)
         {
             IntArray temp = IntArray.Create(size);
             temp.FillRand(minRand, maxRand);

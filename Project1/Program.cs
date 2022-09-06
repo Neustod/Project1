@@ -6,10 +6,13 @@ namespace Project1
     {      
         static void Main() 
         {
-            IntArray Arr = IntArray.CreateRand(size: 10, minRand: -100, maxRand: 100); 
+            Console.Write("Enter array size>>");
+            int arrsize = Convert.ToInt32(Console.ReadLine());
+
+            IntArray Arr = IntArray.CreateRand(size: arrsize, minRand: -100, maxRand: 100); 
 
             Arr.Print();
-            Console.WriteLine($"Max value = {Arr.MaxValue()}\n" +
+            Console.Write($"Max value = {Arr.MaxValue()}\n" +
                 $"Min value = {Arr.MinValue()}");
 
             Console.ReadLine();
