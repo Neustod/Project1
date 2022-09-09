@@ -27,7 +27,7 @@ namespace Project1
                 Console.WriteLine();
             }
         }
-        new public int[] ColsAmount() 
+        override public int[] ColsAmount() 
         {
             int[] temp = new int[columns];
             int amount = 0;
