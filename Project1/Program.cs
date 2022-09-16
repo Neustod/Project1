@@ -2,22 +2,8 @@
 
 namespace Project1 
 {    
-    class Program 
-    {      
-        struct Student
-        {
-            public Student(string _firstName, string _secondName, string _faculty, int _recordBook)
-            {
-                firstName = _firstName;
-                secondName = _secondName;
-                faculty = _faculty;
-                recordBook = _recordBook;
-            }
-
-            public string secondName, firstName, faculty;
-            public int recordBook;
-        }
-
+    partial class Program 
+    {        
         static void Main() 
         {
             Console.Write("Enter array size >> ");
@@ -34,7 +20,14 @@ namespace Project1
 
             //------------------------------------------------------------------------ Task 4
 
-            IIntArray Matrix1 = Matrix.CreateRand(columns: 10, rows: 10, minRand: -100, maxRand: 100);
+            int cols = 1, rows = 1;
+
+            Console.Write("\nCreating matrix.\nEnter amount of columns >> ");
+            cols = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter amount of rows >> ");
+            rows = Convert.ToInt32(Console.ReadLine());
+
+            IIntArray Matrix1 = Matrix.CreateRand(columns: cols, rows: rows, minRand: -100, maxRand: 100);
             
             Console.WriteLine("\nMatrix: ");
             Matrix1.Print();
@@ -75,20 +68,52 @@ namespace Project1
                     $"Record book number: {item.recordBook}\n");
             }
 
-            string sFirstName, sSecondName, sFaculty;
-            int counter = 0;
-
-            Console.Write("[Search for student]\n" +
-                "First Name >> ");
-            sFirstName = Console.ReadLine();
-            Console.Write("Second Name >> ");
-            sSecondName = Console.ReadLine();
+            string tempStr = "";
+            Student search = new Student();
+            int counter = 0, tempInt = 0;
+            int[] conditionParams = new int[4];
             
+            Console.Write("[Search for student]\n" +
+                "(Enter information you search or '-1' if you dont't need it.)\n\n");
+            
+            for (int i = 0; i < 4; i++)
+            {
+                Console.Write($"Enter {(Condition)i} >> ");
+                if (i != 3) tempStr = Console.ReadLine();
+                else tempInt = Convert.ToInt32(Console.ReadLine());
+
+                if (tempStr != "-1" && tempInt != -1)
+                {
+                    conditionParams[i] = 0;
+                    switch (i)
+                    {
+                        case 0:
+                            search.firstName = tempStr;
+                            break;
+                        case 1:
+                            search.secondName = tempStr;
+                            break;
+                        case 2:
+                            search.faculty = tempStr;
+                            break;
+                        case 3:
+                            search.recordBook = tempInt;
+                            break;
+                    }
+                }
+                else
+                    conditionParams[i] = 1;
+            }
+                        
+
             Console.WriteLine("\n[Results]\n");
 
             foreach (Student item in students)
             {
-                if (item.firstName == sFirstName && item.secondName == sSecondName)
+                if ((conditionParams[0] == 0 ? item.firstName == search.firstName : true) &&
+                    (conditionParams[1] == 0 ? item.secondName == search.secondName : true) &&
+                    (conditionParams[2] == 0 ? item.faculty == search.faculty : true) &&
+                    (conditionParams[3] == 0 ? item.recordBook == search.recordBook : true))
                 {
                     counter++;
                     Console.WriteLine($"First Name: {item.firstName}; " +
@@ -98,7 +123,7 @@ namespace Project1
                 }
             }
 
-            Console.WriteLine($"Found {counter} records.");
+            Console.Write($"Found {counter} records.");
                     
             Console.ReadLine();
         }

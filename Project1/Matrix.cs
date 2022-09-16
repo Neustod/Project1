@@ -23,7 +23,7 @@ namespace Project1
         {
             for (int y = 0; y < rows; y++)
             {
-                for (int x = 0; x < columns; x++) Console.Write($"{index[x + y * rows]} ");
+                for (int x = 0; x < columns; x++) Console.Write($"{index[columns > rows ? x + y * rows : y + x * rows] } ");
                 Console.WriteLine();
             }
         }
@@ -35,7 +35,7 @@ namespace Project1
             for (int x = 0; x < columns; x++)
             {
                 for (int y = 0; y < rows; y++)
-                    amount += index[x + y * rows];
+                    amount += index[columns > rows ? x + y * rows : y + x * rows];
 
                 temp[x] = amount;
                 amount = 0;
