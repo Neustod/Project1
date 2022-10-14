@@ -9,16 +9,16 @@ namespace Project1
             Console.Write("Enter array size >> ");
             int arrsize = Convert.ToInt32(Console.ReadLine());
             
-            IIntArray Arr = IntArray.CreateRand(size: arrsize, minRand: -100, maxRand: 100); //Task 2, 3
+            IIntArray Arr = IntArray.CreateRand(size: arrsize, minRand: -100, maxRand: 100);
 
             Console.Write("Array: ");
             Arr.Print();
 
             Console.Write($"Max value = {Arr.Max}\n" +
                 $"Min value = {Arr.Min}\n" +
-                $"The difference between max and min = {Arr.Max - Arr.Min}\n"); //Task 1
+                $"The difference between max and min = {Arr.Max - Arr.Min}\n");
 
-            //------------------------------------------------------------------------ Task 4
+            //------------------------------------------------------------------------
 
             int cols = 1, rows = 1;
 
@@ -38,13 +38,18 @@ namespace Project1
 
             Console.WriteLine("\n");
 
-            //------------------------------------------------------------------------- Task 5
+            //-------------------------------------------------------------------------
 
-            Student[] students = new Student[3];
+            int studentsAmount = 1;
 
-            Console.WriteLine($"Enter students information - first name, second name, faculty, record book num:");
+            Console.Write("Enter the students amount >> ");
+            studentsAmount = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 0; i < 3; i++)
+            Student[] students = new Student[studentsAmount];
+
+            Console.WriteLine("Enter students information - first name, second name, faculty, record book num:");
+
+            for (int i = 0; i < studentsAmount; i++)
             {
                 Console.Write($"\n[Record: {i + 1}]\nFirst Name >> ");
                 students[i].firstName = Console.ReadLine();
@@ -62,9 +67,9 @@ namespace Project1
             Console.WriteLine("\n[Students]\n");
             foreach(Student item in students)
             {
-                Console.WriteLine($"First Name: {item.firstName}; " +
-                    $"Second Name: {item.secondName}; " +
-                    $"Faculty: {item.faculty}; " +
+                Console.WriteLine($"First Name: {item.firstName};\n" +
+                    $"Second Name: {item.secondName};\n" +
+                    $"Faculty: {item.faculty};\n" +
                     $"Record book number: {item.recordBook}\n");
             }
 
@@ -79,8 +84,11 @@ namespace Project1
             for (int i = 0; i < 4; i++)
             {
                 Console.Write($"Enter {(Condition)i} >> ");
-                if (i != 3) tempStr = Console.ReadLine();
-                else tempInt = Convert.ToInt32(Console.ReadLine());
+
+                if (i % 3 != 0 && i > 0) 
+                    tempStr = Console.ReadLine();
+                else 
+                    tempInt = Convert.ToInt32(Console.ReadLine());
 
                 if (tempStr != "-1" && tempInt != -1)
                 {

@@ -4,14 +4,19 @@ using System.Text;
 
 namespace Project1
 {
-    class Matrix : IntArray, IIntArray
+    class Matrix : IIntArray
     {
-        private int[] index;
+        private int[,] index;
         private int columns, rows, max, min, size;
 
-        public Matrix(int columns, int rows) : base(columns * rows)
+        public int[,] Index { get => index; set => index = value; }
+        public int Size { get => size; }
+        public int Max { get => max; }
+        public int Min { get => min; }
+
+        public Matrix(int columns, int rows)
         {
-            index = Index;
+            Index = new int[rows, columns];
             size = columns * rows;
             this.columns = columns;
             this.rows = rows;
@@ -19,15 +24,24 @@ namespace Project1
             min = 0;
         }
 
-        override public void Print()
+        public void FillRand(int start, int end)
+        {
+            Random temp = new Random();
+            for (int y = 0; y < rows; y++)
+                for (int x = 0; x < columns; x++)
+                    Index[y, x] = temp.Next() % (end - start + 1) + start;
+            UpdateProperty();
+        }
+
+        virtual public void Print()
         {
             for (int y = 0; y < rows; y++)
             {
-                for (int x = 0; x < columns; x++) Console.Write($"{index[columns > rows ? x + y * rows : y + x * rows] } ");
+                for (int x = 0; x < columns; x++) Console.Write($"{index[y, x] } ");
                 Console.WriteLine();
             }
         }
-        override public int[] ColsAmount() 
+        virtual public int[] ColsAmount() 
         {
             int[] temp = new int[columns];
             int amount = 0;
@@ -35,12 +49,24 @@ namespace Project1
             for (int x = 0; x < columns; x++)
             {
                 for (int y = 0; y < rows; y++)
-                    amount += index[columns > rows ? x + y * rows : y + x * rows];
+                    amount += index[y, x];
 
                 temp[x] = amount;
                 amount = 0;
             }
             return temp;
+        }
+
+        public void UpdateProperty()
+        {
+            int maxv = index[0, 0], minv = index[0, 0];
+            foreach (int item in index)
+            {
+                if (maxv < item) maxv = item;
+                if (minv > item) minv = item;
+            }
+            max = maxv;
+            min = minv;
         }
 
         static public Matrix Create(int columns, int rows) => new Matrix(columns, rows);

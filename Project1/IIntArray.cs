@@ -7,7 +7,7 @@ namespace Project1
     interface IIntArray
     {
         public void FillRand(int start, int end);
-        public int[] Index { get; set; }
+        public int[,] Index { get; set; }
         public int Size { get; }
         public int Max { get; }
         public int Min { get; }

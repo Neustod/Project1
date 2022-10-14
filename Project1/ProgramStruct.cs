@@ -13,6 +13,7 @@ namespace Project1
             Faculty,
             RecordNumber
         }
+
         struct Student
         {
             public Student(string _firstName, string _secondName, string _faculty, int _recordBook)
