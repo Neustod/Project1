@@ -25,7 +25,7 @@ namespace Project1
         override public int[] ColsAmount() 
         {
             int[] temp = new int[size];
-            for (int i = 0; i < size; i++) temp[i] = index[0, i];
+            for (int i = 0; i < size; i++) temp[i] = Index[0, i];
 
             return temp;
         }
