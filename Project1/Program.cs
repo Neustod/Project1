@@ -85,7 +85,7 @@ namespace Project1
             {
                 Console.Write($"Enter {(Condition)i} >> ");
 
-                if (i % 3 != 0 && i > 0) 
+                if (i / 3 + i % 3 != 3) 
                     tempStr = Console.ReadLine();
                 else 
                     tempInt = Convert.ToInt32(Console.ReadLine());
