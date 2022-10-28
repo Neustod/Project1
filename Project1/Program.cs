@@ -111,6 +111,9 @@ namespace Project1
                 }
                 else
                     conditionParams[i] = 1;
+
+                tempStr = "";
+                tempInt = 0;
             }
                         
 
